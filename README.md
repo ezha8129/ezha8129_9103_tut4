@@ -12,7 +12,7 @@ A video link to showcasing the installation can be found [here](https://youtu.be
 ![An image of the installation](assets/teamLab2.jpeg)
 
 #### 2. Why is it a beneficial technique for the assignment?
-Particle systems can be interactive and responsive to user input. From the example shown, I'd like to incorporate the flow and interactive element of controlling the flow of particles. This adds a sense of dynamism and engagement which aligns with the assignment requirements to create an animated output. The interativity also creates a more immersive experience.
+Particle systems can be interactive and responsive to user input. From the example shown, I'd like to incorporate the flow and interactive element of controlling the flow of particles. This adds a sense of dynamism and engagement which aligns with the assignment requirements to create an animated output. The interactivity also creates a more immersive experience.
 
 ---
 
@@ -24,7 +24,7 @@ A coding technique that can be used to assist in implementing the imaging techni
 Using Perlin Noise can help achieve the desired effect by introducing controlled randomness and motion to the particles in the system (Khan Academy, n.d.). The particles can move and flow in a way that appears natural and visually interesting.
 
 #### 3. Example of coding technique in action
-The screenshot below utilises Perlin Noise and particle system to generate the output so that the particles move in a uniform manner. 
+The screenshot below utilises Perlin Noise and particle system to generate the output so that the particles move in a uniform manner. This is similar to the output described in Part 1 to create a flow.
 
 The link for the example code and output can be found [here](https://openprocessing.org/sketch/723240 "Light Pool").
 
