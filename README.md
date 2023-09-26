@@ -4,7 +4,7 @@
 ### Part 1: Imaging Technique
 
 #### 1. Identifying an imaging technique
-An imaging technique that I find inspiring is the use of particle systems which is used by teaLab's installation titled "Moving Creates Vortices and Vortices Create Movement" (teamLab, 2017). When a person moves, a force is applied in that direction, resulting in a flow. The flow is represented as numerous particles (teamLab, 2017).
+An imaging technique that I find inspiring is the use of particle systems which is used by teamLab's installation titled "Moving Creates Vortices and Vortices Create Movement" (teamLab, 2017). When a person moves, a force is applied in that direction, resulting in a flow. The flow is represented as numerous particles (teamLab, 2017).
 
 A video link to showcasing the installation can be found [here](https://youtu.be/HXI4IPcorSQ "Moving Creates Vortices and Vortices Create Movement").
 
