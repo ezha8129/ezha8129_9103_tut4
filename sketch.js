@@ -96,21 +96,18 @@ function drawYellowRect(inputXPos, inputYPos, inputWidth, inputHeight) {
 
 //Defining a function to draw the blue rectangles with size relative to the window size
 function drawBlueRect(inputXPos, inputYPos, inputWidth, inputHeight) {
-  //Oscillating from right to left by calculating the x position 
-  let outputXPos = width - (inputXPos * sin(frameCount / 300) * width);  
+  let outputXPos = width - (inputXPos + frameCount/50 * 0.05) * width; // Shifting it to the right, however doesn't reappear
   let outputYPos = inputYPos * height;
-  fill(34, sin((frameCount + inputXPos) / 50) * 80, 149); //Green value of RGB oscillates
+  fill(34, sin((frameCount + inputXPos) / 50) * 80, 149); // Green value of RGB oscillates
   rect(outputXPos, outputYPos, inputWidth * width, inputHeight * height);
 }
 
 //Defining a function that draws a grey rectangle with size relative to window size
 function drawGreyRect(inputXPos, inputYPos, inputWidth, inputHeight) {
-  let outputXPos = inputXPos;
-  let outputYPos = inputYPos;
-  let outputWidth = inputWidth;
-  let outputHeight = inputHeight;
-  fill(210);
-  rect(outputXPos * windowWidth, outputYPos * windowHeight, outputWidth * windowWidth, outputHeight * windowHeight)
+  let outputXPos = (inputXPos * sin(frameCount / 150) * width); //Oscillating left to right 
+  let outputYPos = inputYPos * height;
+  fill(232, 232, 232);
+  rect(outputXPos, outputYPos, inputWidth * width, inputHeight * height);
 
 }
 //Responsive design. 
