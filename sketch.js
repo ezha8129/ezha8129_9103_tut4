@@ -4,7 +4,7 @@ function setup() {
 }
 
 function draw() {
-  background(255);
+  background(255, 252, 245); //Background colour
 
   //Yellow rectangles using the ratio of the position and size relative to the canvas to ensure responsiveness
   drawYellowRect(0, 0, 0.072, 0.464);
@@ -87,24 +87,20 @@ function draw() {
 
 //Defining a function to draw the yellow rectangles with size relative to the window size
 function drawYellowRect(inputXPos, inputYPos, inputWidth, inputHeight) {
-  let outputXPos = inputXPos;
-  let outputYPos = inputYPos;
-  let outputWidth = inputWidth;
-  let outputHeight = inputHeight;
-  fill(248, 196, 12)
-  rect(outputXPos * windowWidth, outputYPos * windowHeight, outputWidth * windowWidth, outputHeight * windowHeight)
+  let outputXPos = inputXPos * sin(frameCount / 500); // Using frameCount and sin to oscillate left to right
+  let outputYPos = inputYPos * height;
 
+  fill(250, sin((frameCount + inputXPos) / 50) * 201, 1); // Colour oscillates from yellow to red
+  rect(outputXPos * width, outputYPos, inputWidth * width, inputHeight * height); 
 }
 
 //Defining a function to draw the blue rectangles with size relative to the window size
 function drawBlueRect(inputXPos, inputYPos, inputWidth, inputHeight) {
-  let outputXPos = inputXPos;
-  let outputYPos = inputYPos;
-  let outputWidth = inputWidth;
-  let outputHeight = inputHeight;
-  fill(10, 19, 122);
-  rect(outputXPos * windowWidth, outputYPos * windowHeight, outputWidth * windowWidth, outputHeight * windowHeight)
-
+  //Oscillating from right to left by calculating the x position 
+  let outputXPos = width - (inputXPos * sin(frameCount / 300) * width);  
+  let outputYPos = inputYPos * height;
+  fill(34, sin((frameCount + inputXPos) / 50) * 80, 149); //Green value of RGB oscillates
+  rect(outputXPos, outputYPos, inputWidth * width, inputHeight * height);
 }
 
 //Defining a function that draws a grey rectangle with size relative to window size
