@@ -7,7 +7,7 @@ function setup() {
 
 function draw() {
   background(255, 252, 245); //Background colour
-  runningShapes();
+  runningSquares();
 
   //Yellow rectangles using the ratio of the position and size relative to the canvas to ensure responsiveness
   drawYellowRect(0, 0, 0.072, 0.464);
@@ -100,22 +100,26 @@ function drawGreyRect(inputXPos, inputYPos, inputWidth, inputHeight) {
 }
 
 //Creating a function to add falling squares. Code adapted from https://editor.p5js.org/annA/sketches/zaqrFwMH5
-function runningShapes(){ 
+function runningSquares() {
+  if (frameCount % 50 === 0) {  // Create a new shape every 50 frames 
+    let xpos = random(windowWidth);
+    let ypos = 0;
+    let fillColour = random([color('#fac901'), color('#000000'), color('#225095'), color('#dd0100')]); //Randomising between selected colours
+
+    shapes.push({ xpos, ypos, fillColour}); // Create a new shape in the array with the determined attributes
+  }
+
   for (let i = 0; i < shapes.length; i++) {
-  
-    const xpos = random(windowWidth);
-    const ypos = 0;
-    const fillColor = random([color('#fac901'), color('#000000'), color('#225095'), color('#dd0100')]);
-    shapes.push({ xpos, ypos, fillColor });
-    
     if (shapes[i]) { // Check if the element exists
-        fill(shapes[i].fillColor);
-        rect(shapes[i].xpos, shapes[i].ypos, 30, 30);
-        shapes[i].ypos += 1; //Making the shape fall down vertically
+      fill(shapes[i].fillColour);
+      shapes[i].ypos += 1; // Rectangle moves down 
+      let shapeWidth = 0.02 * windowWidth // Always in ratio to the canvas width (responseive design)
+      let shapeHeight = 0.03 * windowHeight // Always in ratio to the canvas height (responseive design)
+      rect(shapes[i].xpos, shapes[i].ypos, shapeWidth, shapeHeight);
     }
+  }
 }
 
-}
 //Responsive design. 
 //Since the rectangles are drawn in ratio of the window width and height, they will not change position
 //Rectangles will change in size relative to window size
