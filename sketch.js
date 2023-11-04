@@ -1,4 +1,5 @@
 let shapes = []; //Initialise empty array
+let shapesMovingUp = []
 
 function setup() {
   createCanvas(windowWidth, windowHeight); //Creating the canvas to the size of the window
@@ -16,15 +17,13 @@ function draw() {
   //Yellow rectangles in the background
   drawYellowRect(0.1, 0.152, 0.148, 0.272);
   drawYellowRect(0.144, 0.504, 0.06, 0.052);
-  drawYellowRect(0.152, 0.612, 0.132, 0.088);
   drawYellowRect(0.168, 0.756, 0.086, 0.104);
   drawYellowRect(0.284, 0.154, 0.132, 0.136);
   drawYellowRect(0.272, 0.273, 0.108, 0.064);
   drawYellowRect(0.416, 0.304, 0.088, 0.152);
   drawYellowRect(0.292, 0.476, 0.08, 0.096);
   drawYellowRect(0.736, 0.584, 0.16, 0.092);
-  drawYellowRect(0.68, 0.72, 0.128, 0.26);
-  drawYellowRect(0.824, 0.788, 0.048, 0.06);
+
 
   //Blue rectangles in the background
   drawBlueRect(0.052, 0.032, 0.052, 0.388);
@@ -39,9 +38,9 @@ function draw() {
   drawBlueRect(0.484, 0.576, 0.016, 0.028);
 
   //Red rectangles in background
-  drawRedRect(0, 0, 0.072, 0.464);
+  //drawRedRect(0, 0, 0.072, 0.464);
   drawRedRect(0.124, 0.078, 0.208, 0.112);
-  drawRedRect(0.127, 0.304, 0.16, 0.096);
+  //drawRedRect(0.127, 0.304, 0.16, 0.096);
   drawRedRect(0.42,0.872,0.056,0.076);
   drawRedRect(0.768,0.108,0.06,0.048);
 
@@ -88,9 +87,11 @@ function draw() {
   drawGreyRect(0.856,0.216,0.008,0.032);
   drawGreyRect(0,0.388,0.088,0.048);
   drawGreyRect(0.624,0.34,0.068,0.064);
+
+  runningSquaresUp();
 }
 
-//Defining a function to draw the yellow rectangles with size relative to the window size
+//Defining functions to create the rectangles with responsive size
 
 function drawYellowRect(inputXPos, inputYPos, inputWidth, inputHeight) {
   //Calculating the distance by adjusting the modulus operation and then subtracting inputWidth * width. 
@@ -115,7 +116,7 @@ function drawRedRect(inputXPos, inputYPos, inputWidth, inputHeight) {
 //Defining a function to draw the blue rectangles with size relative to the window size
 function drawBlueRect(inputXPos, inputYPos, inputWidth, inputHeight) {
   // Using modulo to wrap around and frameCount to change position over time
-  let outputXPos = width - (inputXPos * width + frameCount) % (width + (inputWidth * width)); 
+  let outputXPos = width - (inputXPos * width + frameCount*4) % (width + (inputWidth * width)); 
   let outputYPos = inputYPos * height;
   let startColor = color(34, 80, 149); // Blue
   let endColor = color(0, 0, 0); // Black
@@ -126,7 +127,7 @@ function drawBlueRect(inputXPos, inputYPos, inputWidth, inputHeight) {
 
 //Defining a function that draws a grey rectangle with size relative to window size
 function drawGreyRect(inputXPos, inputYPos, inputWidth, inputHeight) {
-  let outputXPos = (inputXPos * sin(frameCount / 150) * width); //Oscillating from left to right
+  let outputXPos = (inputXPos * sin(frameCount / 100) * width); //Oscillating from left to right
   let outputYPos = inputYPos * height;
   fill(232, 232, 232);
   rect(outputXPos, outputYPos, inputWidth * width, inputHeight * height);
@@ -161,6 +162,26 @@ function runningSquares() {
   }
 }
 
+function runningSquaresUp() {
+  if (frameCount % 50 === 0) {
+    // Create a new shape every 50 frames 
+    let xpos = random(windowWidth);
+    let ypos = height;
+    let fillColour = random([color('#fac901'), color('#000000'), color('#225095'), color('#dd0100')]);
+
+    shapesMovingUp.push({ xpos, ypos, fillColour });
+  }
+
+  for (let i = 0; i < shapesMovingUp.length; i++) {
+    if (shapesMovingUp[i]) { // Check if the element exists
+      fill(shapesMovingUp[i].fillColour);
+      shapesMovingUp[i].ypos -= 4; // Moves up at a faster speed
+      let shapeWidth = 0.02 * windowWidth // Always in ratio to the canvas width (responseive design)
+      let shapeHeight = 0.03 * windowHeight // Always in ratio to the canvas height (responseive design)
+      rect(shapesMovingUp[i].xpos, shapesMovingUp[i].ypos, shapeWidth, shapeHeight);
+    }
+  }
+}
 //Responsive design. 
 //Since the rectangles are drawn in ratio of the window width and height, they will not change position
 //Rectangles will change in size relative to window size
