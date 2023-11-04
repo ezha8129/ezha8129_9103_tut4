@@ -11,7 +11,7 @@ Functions to create the yellow, blue, red and grey rectangles which are in ratio
 size relative the canvas size to ensure responsiveness. 
 */
 function draw() {
-  background(255, 252, 245); //Background colour
+  background(250, 247, 235); //Background colour
   runningSquares();
 
   //Yellow rectangles in the background
@@ -134,7 +134,7 @@ function drawGreyRect(inputXPos, inputYPos, inputWidth, inputHeight) {
 }
 
 function drawGreyRectTwo(inputXPos, inputYPos, inputWidth, inputHeight) {
-let outputXPos = width - (inputXPos * sin(frameCount / 150) * width); //Oscillating right to left 
+let outputXPos = width - (inputXPos * sin(frameCount / 120) * width); //Oscillating right to left 
 let outputYPos = inputYPos * height;
 fill(232, 232, 232);
 rect(outputXPos, outputYPos, inputWidth * width, inputHeight * height);
@@ -155,9 +155,8 @@ function runningSquares() {
     if (shapes[i]) { // Check if the element exists
       fill(shapes[i].fillColour);
       shapes[i].ypos += 1; // Rectangle moves down 
-      let shapeWidth = 0.02 * windowWidth // Always in ratio to the canvas width (responseive design)
-      let shapeHeight = 0.03 * windowHeight // Always in ratio to the canvas height (responseive design)
-      rect(shapes[i].xpos, shapes[i].ypos, shapeWidth, shapeHeight);
+      let length = 0.02 * windowWidth // Always in ratio to the canvas width (responseive design)
+      rect(shapes[i].xpos, shapes[i].ypos, length, length);
     }
   }
 }
@@ -176,9 +175,8 @@ function runningSquaresUp() {
     if (shapesMovingUp[i]) { // Check if the element exists
       fill(shapesMovingUp[i].fillColour);
       shapesMovingUp[i].ypos -= 4; // Moves up at a faster speed
-      let shapeWidth = 0.02 * windowWidth // Always in ratio to the canvas width (responseive design)
-      let shapeHeight = 0.03 * windowHeight // Always in ratio to the canvas height (responseive design)
-      rect(shapesMovingUp[i].xpos, shapesMovingUp[i].ypos, shapeWidth, shapeHeight);
+      let length = 0.02 * windowWidth
+      rect(shapesMovingUp[i].xpos, shapesMovingUp[i].ypos, length, length);
     }
   }
 }
