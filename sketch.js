@@ -1,5 +1,5 @@
-let shapes = []; //Initialise empty array
-let shapesMovingUp = []
+let shapes = []; //Initialise empty array for the squares moving down
+let shapesMovingUp = [] //Initialise empty array for the squares moving up
 
 function setup() {
   createCanvas(windowWidth, windowHeight); //Creating the canvas to the size of the window
@@ -99,7 +99,11 @@ function drawYellowRect(inputXPos, inputYPos, inputWidth, inputHeight) {
   let distance = (inputXPos * width + frameCount * 2) % (width + (inputWidth * width)) - inputWidth * width; 
   let outputXPos = constrain(distance, -inputWidth * width, width); // Ensure the rectangles stay within the canvas
   let outputYPos = inputYPos * height;
-  fill(250, 201, 1); //Yellow
+  let startColor = color(250, 201, 1); // Yellow
+  let endColor = color(204, 226, 163); // Green-yellow
+  // This oscillates from yellow to green-yellow using sin and frameCount
+  let lerpedColor = lerpColor(startColor, endColor, (1 + sin(frameCount / 100)) / 2); 
+  fill(lerpedColor); //Yellow
   rect(outputXPos, outputYPos, inputWidth * width, inputHeight * height);
 }
 
@@ -109,7 +113,11 @@ function drawRedRect(inputXPos, inputYPos, inputWidth, inputHeight) {
   let distance = (inputXPos * width + frameCount) % (width + (inputWidth * width)) - inputWidth * width; 
   let outputXPos = constrain(distance, -inputWidth * width, width); // Ensure the rectangles stay within the canvas
   let outputYPos = inputYPos * height;
-  fill(221, 1, 0); //Red
+  let startColor = color(221, 1, 0); // Red
+  let endColor = color(134, 22, 87); // Purple-Red
+  // This oscillates from red-purple using sin and frameCount
+  let lerpedColor = lerpColor(startColor, endColor, (1 + sin(frameCount / 70)) / 2); 
+  fill(lerpedColor); //Red
   rect(outputXPos, outputYPos, inputWidth * width, inputHeight * height);
 }
 
@@ -119,8 +127,9 @@ function drawBlueRect(inputXPos, inputYPos, inputWidth, inputHeight) {
   let outputXPos = width - (inputXPos * width + frameCount*4) % (width + (inputWidth * width)); 
   let outputYPos = inputYPos * height;
   let startColor = color(34, 80, 149); // Blue
-  let endColor = color(0, 0, 0); // Black
-  let lerpedColor = lerpColor(startColor, endColor, (1 + sin(frameCount / 100)) / 2); // This gradually changes from blue to black
+  let endColor = color(2, 60, 64); // Dark green
+  // This oscillates from blue to green using sin and frameCount
+  let lerpedColor = lerpColor(startColor, endColor, (1 + sin(frameCount / 50)) / 2); 
   fill(lerpedColor);
   rect(outputXPos, outputYPos, inputWidth * width, inputHeight * height);
 }
@@ -161,6 +170,8 @@ function runningSquares() {
   }
 }
 
+//Creating a function to add squares moving up, similar to the above function
+//These squares move at a quicker speed, creating a more visually interesting effect
 function runningSquaresUp() {
   if (frameCount % 50 === 0) {
     // Create a new shape every 50 frames 
@@ -181,8 +192,7 @@ function runningSquaresUp() {
   }
 }
 //Responsive design. 
-//Since the rectangles are drawn in ratio of the window width and height, they will not change position
-//Rectangles will change in size relative to window size
+//Since the rectangles are drawn in ratio of the window width and height, their size and position will change in relative to window size
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 
